@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <!--顺序(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,
+    plugins?,environments?,databaseIdProvider?,mappers?-->
+
+    <!--驼峰命名规则-->
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+
+    <!--类型别名  不区分大小写,默认的alias是类名且不区分大小写-->
+    <typeAliases>
+        <!--<typeAlias type="com.myssm.mybatis.pojo.User" alias="User"></typeAlias>-->
+        <!--以包为单位,将包下所有的类型设置为默认的类型别名-->
+        <package name="com.study.bean"/>
+    </typeAliases>
+
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="reasonable" value="true"/> <!--合理地分页,不显示负数和超过总数的页码-->
+        </plugin>
+    </plugins>
+    <!--    &lt;!&ndash;配置连接数据库的环境&ndash;&gt;-->
+    <!--    <environments default="development">-->
+    <!--        <environment id="development">-->
+    <!--            <transactionManager type="JDBC"/>-->
+    <!--            <dataSource type="POOLED">-->
+    <!--                <property name="driver" value="${jdbc.driver}"/>-->
+    <!--                <property name="url" value="${jdbc.url}"/>-->
+    <!--                <property name="username" value="${jdbc.username}"/>-->
+    <!--                <property name="password" value="${jdbc.password}"/>-->
+    <!--            </dataSource>-->
+    <!--        </environment>-->
+    <!--    </environments>-->
+
+
+    <!--引入映射文件-->
+    <mappers>
+        <!--<mapper resource="mappers/UserMapper.xml"/>-->
+        <!--以包为单位 要求接口包和xml包名相同，文件名也相同-->
+        <!--<package name="mapper"/>-->
+        <mapper resource="mapper/DepartmentMapper.xml"/>
+        <mapper resource="mapper/EmployeeMapper.xml"/>
+    </mappers>
+</configuration>
